@@ -14,6 +14,7 @@ class Notification extends Message
     private $clickAction;
     private $tag;
     private $content_available;
+    private $android_channel_id;
 
     public function __construct($title = '', $body = '')
     {
@@ -33,6 +34,12 @@ class Notification extends Message
     public function setBody($body)
     {
         $this->body = $body;
+        return $this;
+    }
+
+    public function setAndroidChannelId($androidChannelId)
+    {
+        $this->android_channel_id = $androidChannelId;
         return $this;
     }
 
@@ -110,6 +117,9 @@ class Notification extends Message
         }
         if ($this->content_available) {
             $jsonData['content_available'] = $this->content_available;
+        } 
+        if ($this->android_channel_id) {
+            $jsonData['android_channel_id'] = $this->android_channel_id;
         }        
         return $jsonData;
     }
